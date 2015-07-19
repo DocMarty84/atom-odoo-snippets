@@ -1,0 +1,73 @@
+'.source.python':
+	'Create New Odoo Object':
+		'prefix': 'odoo_object'
+		'body': """
+			class NewModule(models.Model):
+				_name = 'new_module.new_module'
+				_rec_name = 'name'
+				_description = 'New Description'
+
+				name = fields.Char()
+		"""
+
+	'Inherit/Extend Existing Odoo Object':
+		'prefix': 'odoo_object_inherit'
+		'body': """
+			class NewModule(models.Model):
+				_name = 'new_module.new_module'
+				_inherit = 'new_module.new_module'
+
+				name = fields.Char()
+		"""
+
+	'Add new field of type Integer':
+		'prefix': 'odoo_field_integer'
+		'body': 'new_field = fields.Integer(string="", required=False, )'
+
+	'Add new field of type Char':
+		'prefix': 'odoo_field_char'
+		'body': 'new_field = fields.Char(string="", required=False, )'
+
+	'Add new field of type Text':
+		'prefix': 'odoo_field_text'
+		'body': 'new_field = fields.Text(string="", required=False, )'
+
+	'Add new field of type Many2one':
+		'prefix': 'odoo_field_many2one'
+		'body': 'new_field_id = fields.Many2one(comodel_name="", string="", required=False, )'
+
+	'Add new field of type One2many':
+		'prefix': 'odoo_field_one2many'
+		'body': 'new_field_ids = fields.One2many(comodel_name="", inverse_name="", string="", required=False, )'
+
+	'Add new field of type Many2many':
+		'prefix': 'odoo_field_many2many'
+		'body': 'new_field_ids = fields.Many2many(comodel_name="", relation="", column1="", column2="", string="", )'
+
+	'Add new field of type Boolean':
+		'prefix': 'odoo_field_boolean'
+		'body': 'is_new_field = fields.Boolean(string="",  )'
+
+	'Add new field of type HTML':
+		'prefix': 'odoo_field_html'
+		'body': 'new_field = fields.HTML(string="",  )'
+
+	'Add new field of type Float':
+		'prefix': 'odoo_field_float'
+		'body': 'new_field = fields.Float(string="",  required=False, )'
+
+	'Add new field of type Date':
+		'prefix': 'odoo_field_date'
+		'body': 'new_field = fields.Date(string="", required=False, )'
+
+	'Add new field of type DateTime':
+		'prefix': 'odoo_field_datetime'
+		'body': 'new_field = fields.Datetime(string="", required=False, )'
+
+	'Add new field of type Selection':
+		'prefix': 'odoo_field_selection'
+		'body': 'state = fields.Selection(string="", selection=[('', ''), ('', ''), ], required=False, )'
+
+	'Add new field of type Binary':
+		'prefix': 'odoo_field_binary'
+		'body': 'new_field = fields.Binary(string="",  )'

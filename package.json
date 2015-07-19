@@ -1,0 +1,19 @@
+{
+  "name": "odoo-snippets",
+  "main": "./lib/main",
+  "version": "0.0.0",
+  "description": "Snippets for the Odoo software development",
+  "keywords": [
+    "snippets",
+    "odoo",
+    "python",
+    "xml"
+  ],
+  "activationCommands": {},
+  "repository": "https://github.com/nicolasmartinelli/atom-odoo-snippets",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {}
+}

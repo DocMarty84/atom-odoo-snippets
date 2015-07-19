@@ -1,0 +1,242 @@
+'.text.xml':
+	'Create the main tags':
+		'prefix': 'odoo_data'
+		'body': """
+		<?xml version="1.0" encoding="utf-8"?>
+		<odoo>
+
+
+		</odoo>
+		"""
+
+	'Create Form View':
+		'prefix': 'odoo_form'
+		'body': """
+			<record id="" model="ir.ui.view">
+				<field name="name"></field>
+				<field name="model"></field>
+				<field name="arch" type="xml">
+					<form string="">
+						<sheet>
+							<group>
+								<field name="name"/>
+							</group>
+						</sheet>
+					</form>
+				</field>
+			</record>
+		"""
+
+	'Create Tree View':
+		'prefix': 'odoo_tree'
+		'body': """
+			<record id="" model="ir.ui.view">
+				<field name="name"></field>
+				<field name="model"></field>
+				<field name="arch" type="xml">
+					<tree string="">
+						<field name="name"/>
+					</tree>
+				</field>
+			</record>
+		"""
+
+	'Inherit Existing Form View':
+		'prefix': 'odoo_form_inherit'
+		'body': """
+			<!-- Inherit Form View to Modify it -->
+			<record id="" model="ir.ui.view">
+				<field name="name"></field>
+				<field name="model"></field>
+				<field name="inherit_id" ref=""/>
+				<field name="arch" type="xml">
+
+					<xpath expr="//field[@name='name']" position="">
+						<!-- Add your fields or attributes here -->
+					</xpath>
+
+				</field>
+			</record>
+		"""
+
+	'Inherit Existing Tree View':
+		'prefix': 'odoo_tree_inherit'
+		'body': """
+			<record id="" model="ir.ui.view">
+				<field name="name"></field>
+				<field name="model"></field>
+				<field name="inherit_id" ref=""/>
+				<field name="arch" type="xml">
+
+					<xpath expr="//field[@name='name']" position="">
+						<!-- Add new fields here -->
+					</xpath>
+
+				</field>
+			</record>
+		"""
+
+	'Add Form\'s header with \'state\' and buttons':
+		'prefix': 'odoo_form_header'
+		'body': """
+			<header>
+				<button name="" string="" class="oe_highlight" states="" type=""/>
+				<field name="state" widget="statusbar" statusbar_visible="" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
+			</header>
+		"""
+
+	'Create new Action':
+		'prefix': 'odoo_view_action'
+		'body': """
+			<record id="" model="ir.actions.act_window">
+				<field name="name"></field>
+				<field name="type">ir.actions.act_window</field>
+				<field name="res_model"></field>
+				<field name="view_mode">tree,form</field>
+				<field name="help" type="html">
+				  <p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				  </p><p>
+					<!-- More details about what a user can do with this object will be OK -->
+				  </p>
+				</field>
+			</record>
+		"""
+
+	'Create Menu Item in the Upper bar':
+		'prefix': 'odoo_menuitem_root'
+		'body': """
+			<!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+			<menuitem id="MODULE_NAME_root" name="" sequence=""/>
+		"""
+
+	'Create Menu Item for Categorization':
+		'prefix': 'odoo_menuitem_categ'
+		'body': """
+			<!-- This Menu Item Must have a parent -->
+			<menuitem id="UNIQUE_ID_categ" name="" parent="" sequence=""/>
+		"""
+
+	'Create Menu Item for Actions':
+		'prefix': 'odoo_menuitem_action'
+		'body': """
+			<!-- This Menu Item must have a parent and an action -->
+			<menuitem id="UNIQUE_ID_categ" name="" parent="" action="" sequence=""/>
+		"""
+
+	'Add Nested Groups':
+		'prefix': 'odoo_nested_group'
+		'body': """
+			<group string="">
+				<group>
+					<field name=""/>
+				</group>
+				<group>
+					<field name=""/>
+				</group>
+			</group>
+		"""
+
+	'Add Notebook and a page':
+		'prefix': 'odoo_notebook'
+		'body': """
+			<notebook>
+				<page string="">
+					<group>
+						<field name=""/>
+					</group>
+				</page>
+			</notebook>
+		"""
+
+	'Add page':
+		'prefix': 'odoo_page'
+		'body': """
+			<page string="">
+				<group>
+					<field name=""/>
+				</group>
+			</page>
+		"""
+
+	'Add domain to a field':
+		'prefix': 'odoo_domain'
+		'body': 'domain="[(\'\', \'=\', ), ]"'
+
+	'Create Security Category':
+		'prefix': 'odoo_security_category'
+		'body': """
+      <record id="" model="ir.module.category">
+      	<field name="name"></field>
+      	<field name="sequence" eval="1"/>
+      </record>
+		"""
+
+	'Create Group, then assign new permissions':
+		'prefix': 'odoo_security_group'
+		'body': """
+			<record id="" model="res.groups">
+				<field name="name"></field>
+				<field name="category_id" ref=""/>
+				<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+			</record>
+		"""
+
+	'Create Security Rules':
+		'prefix': 'odoo_security_rule'
+		'body': """
+			<record id="" model="ir.rule">
+				<field name="name"></field>
+				<field ref="model_name_of_model" name="model_id"/>
+				<field name="domain_force">[('', '', )]</field>
+				<field name="perm_write" eval="1"/>
+				<field name="perm_create" eval="1"/>
+				<field name="perm_read" eval="1"/>
+				<field name="perm_unlink" eval="1"/>
+				<!-- You can attach this rule to a specific group, Or make it Global -->
+				<field name="groups" eval="[(4, ref('group_id'))]"/>
+				<!--<field name="global" eval="1"/> -->
+			</record>
+		"""
+
+	'Create Workflow':
+		'prefix': 'odoo_wkf'
+		'body': """
+			<record id="" model="workflow">
+				<field name="name"></field>
+				<field name="osv"></field>
+				<field name="on_create">True</field>
+			</record>
+		"""
+
+	'Add Transition to Workflow':
+		'prefix': 'odoo_wkf_transition'
+		'body': """
+			<record id="" model="workflow.transition">
+				<field name="act_from" ref=""/>
+				<field name="act_to" ref=""/>
+				<field name="signal"></field>
+			</record>
+		"""
+
+	'Add Activity to Workflow':
+		'prefix': 'odoo_wkf_activity'
+		'body': """
+			<record id="" model="workflow.activity">
+				<field name="wkf_id" ref=""/>
+				<!--<field name="flow_start">True</field>-->
+				<!--<field name="flow_stop">True</field>-->
+				<field name="name"></field>
+				<field name="kind">function</field>
+				<field name="action">METHOD_NAME()</field>
+			</record>
+		"""
+
+	'Add Social Messaging and followers':
+		'prefix': 'odoo_form_social'
+		'body': """
+			<div class="oe_chatter">
+				<field name="message_follower_ids" widget="mail_followers"/>
+				<field name="message_ids" widget="mail_thread"/>
+			</div>
+		"""
