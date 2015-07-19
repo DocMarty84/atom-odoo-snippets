@@ -1,25 +1,26 @@
 '.text.xml':
 	'Create the main tags':
-		'prefix': 'odoo_data'
+		'prefix': 'oo_data'
 		'body': """
 		<?xml version="1.0" encoding="utf-8"?>
 		<odoo>
-
-
+			$1
 		</odoo>
 		"""
 
-	'Create Form View':
-		'prefix': 'odoo_form'
+# Form, tree and search view creation
+
+	'Create form view':
+		'prefix': 'oo_form'
 		'body': """
-			<record id="" model="ir.ui.view">
-				<field name="name"></field>
-				<field name="model"></field>
+			<record id="$1_view_form" model="ir.ui.view">
+				<field name="name">$2.form</field>
+				<field name="model">$2</field>
 				<field name="arch" type="xml">
-					<form string="">
+					<form string="$3">
 						<sheet>
 							<group>
-								<field name="name"/>
+								<field name="$4"/>
 							</group>
 						</sheet>
 					</form>
@@ -27,213 +28,242 @@
 			</record>
 		"""
 
-	'Create Tree View':
-		'prefix': 'odoo_tree'
+	'Create tree view':
+		'prefix': 'oo_tree'
 		'body': """
-			<record id="" model="ir.ui.view">
-				<field name="name"></field>
-				<field name="model"></field>
+			<record id="$1_view_tree" model="ir.ui.view">
+				<field name="name">$2.tree</field>
+				<field name="model">$2</field>
 				<field name="arch" type="xml">
-					<tree string="">
-						<field name="name"/>
+					<tree string="$3">
+						<field name="$4"/>
 					</tree>
 				</field>
 			</record>
 		"""
 
-	'Inherit Existing Form View':
-		'prefix': 'odoo_form_inherit'
+	'Create search view':
+		'prefix': 'oo_search'
 		'body': """
-			<!-- Inherit Form View to Modify it -->
-			<record id="" model="ir.ui.view">
-				<field name="name"></field>
-				<field name="model"></field>
-				<field name="inherit_id" ref=""/>
+			<record id="$1_view_search" model="ir.ui.view">
+				<field name="name">$2.search</field>
+				<field name="model">$2</field>
 				<field name="arch" type="xml">
-
-					<xpath expr="//field[@name='name']" position="">
-						<!-- Add your fields or attributes here -->
-					</xpath>
-
+					<tree string="$3">
+						<field name="$4"/>
+						<filter name="$5" string="$6" domain="[(\'$7\', \'=\', $8), ]"/>
+					</tree>
 				</field>
 			</record>
 		"""
 
-	'Inherit Existing Tree View':
-		'prefix': 'odoo_tree_inherit'
+	'Inherit existing form view':
+		'prefix': 'oo_form_inherit'
 		'body': """
-			<record id="" model="ir.ui.view">
-				<field name="name"></field>
-				<field name="model"></field>
-				<field name="inherit_id" ref=""/>
+			<!-- Inherit Form view -->
+			<record id="$1" model="ir.ui.view">
+				<field name="name">$2.form</field>
+				<field name="model">$2</field>
+				<field name="inherit_id" ref="$3"/>
 				<field name="arch" type="xml">
+					<xpath expr="//field[@name='name']" position="$4">
+						<!-- Add your fields or attributes here -->
+					</xpath>
+				</field>
+			</record>
+		"""
 
-					<xpath expr="//field[@name='name']" position="">
+	'Inherit existing tree view':
+		'prefix': 'oo_tree_inherit'
+		'body': """
+			<record id="$1" model="ir.ui.view">
+				<field name="name">$2.tree</field>
+				<field name="model">$2</field>
+				<field name="inherit_id" ref="$3"/>
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='name']" position="$4">
 						<!-- Add new fields here -->
 					</xpath>
+				</field>
+			</record>
+		"""
 
+	'Inherit existing search view':
+		'prefix': 'oo_search_inherit'
+		'body': """
+			<record id="$1" model="ir.ui.view">
+				<field name="name">$2.search</field>
+				<field name="model">$2</field>
+				<field name="inherit_id" ref="$3"/>
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='name']" position="$4">
+						<!-- Add new fields or filters here -->
+					</xpath>
 				</field>
 			</record>
 		"""
 
 	'Add Form\'s header with \'state\' and buttons':
-		'prefix': 'odoo_form_header'
+		'prefix': 'oo_form_header'
 		'body': """
 			<header>
-				<button name="" string="" class="oe_highlight" states="" type=""/>
-				<field name="state" widget="statusbar" statusbar_visible="" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
+				<button name="$1" string="$2" class="oe_highlight" states="$3" type="$4"/>
+				<field name="state" widget="statusbar" statusbar_visible="$5" statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
 			</header>
 		"""
 
-	'Create new Action':
-		'prefix': 'odoo_view_action'
+# Action
+
+	'Create new action':
+		'prefix': 'oo_action'
 		'body': """
-			<record id="" model="ir.actions.act_window">
-				<field name="name"></field>
-				<field name="type">ir.actions.act_window</field>
-				<field name="res_model"></field>
+			<record id="$1_action_form" model="ir.actions.act_window">
+				<field name="name">$2</field>
+				<field name="res_model">$3</field>
 				<field name="view_mode">tree,form</field>
 				<field name="help" type="html">
-				  <p class="oe_view_nocontent_create">
-					<!-- Add Text Here -->
-				  </p><p>
-					<!-- More details about what a user can do with this object will be OK -->
-				  </p>
+					<p class="oe_view_nocontent_create">
+						<!-- Add Text Here -->
+					</p>
+					<p>
+						<!-- More details about what a user can do -->
+					</p>
 				</field>
 			</record>
 		"""
 
-	'Create Menu Item in the Upper bar':
-		'prefix': 'odoo_menuitem_root'
-		'body': """
-			<!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-			<menuitem id="MODULE_NAME_root" name="" sequence=""/>
-		"""
+# Menuitem
 
-	'Create Menu Item for Categorization':
-		'prefix': 'odoo_menuitem_categ'
-		'body': """
-			<!-- This Menu Item Must have a parent -->
-			<menuitem id="UNIQUE_ID_categ" name="" parent="" sequence=""/>
-		"""
+	'Create menu item in the upper bar':
+		'prefix': 'oo_menuitem_root'
+		'body': '<menuitem id="menu_$1" name="$2" sequence="$3"/>'
 
-	'Create Menu Item for Actions':
-		'prefix': 'odoo_menuitem_action'
-		'body': """
-			<!-- This Menu Item must have a parent and an action -->
-			<menuitem id="UNIQUE_ID_categ" name="" parent="" action="" sequence=""/>
-		"""
+	'Create menu item for category':
+		'prefix': 'oo_menuitem_category'
+		'body': '<menuitem id="menu_$1" name="$2" parent="$3" sequence="$4"/>'
 
-	'Add Nested Groups':
-		'prefix': 'odoo_nested_group'
+	'Create menu item for actions':
+		'prefix': 'oo_menuitem_action'
+		'body': '<menuitem id="menu_$1" name="$2" parent="$3" action="$4" sequence="$5"/>'
+
+# Common structures
+
+	'Add nested groups':
+		'prefix': 'oo_nested_group'
 		'body': """
-			<group string="">
+			<group string="$1">
 				<group>
-					<field name=""/>
+					<field name="$2"/>
 				</group>
 				<group>
-					<field name=""/>
+					<field name="$3"/>
 				</group>
 			</group>
 		"""
 
-	'Add Notebook and a page':
-		'prefix': 'odoo_notebook'
+	'Add notebook and a page':
+		'prefix': 'oo_notebook'
 		'body': """
 			<notebook>
-				<page string="">
+				<page string="$1">
 					<group>
-						<field name=""/>
+						<field name="$2"/>
 					</group>
 				</page>
 			</notebook>
 		"""
 
 	'Add page':
-		'prefix': 'odoo_page'
+		'prefix': 'oo_page'
 		'body': """
-			<page string="">
+			<page string="$1">
 				<group>
-					<field name=""/>
+					<field name="$2"/>
 				</group>
 			</page>
 		"""
 
 	'Add domain to a field':
-		'prefix': 'odoo_domain'
-		'body': 'domain="[(\'\', \'=\', ), ]"'
+		'prefix': 'oo_domain'
+		'body': 'domain="[(\'$1\', \'=\', $2), ]"'
 
-	'Create Security Category':
-		'prefix': 'odoo_security_category'
+# Security
+
+	'Create security category':
+		'prefix': 'oo_security_category'
 		'body': """
-      <record id="" model="ir.module.category">
-      	<field name="name"></field>
-      	<field name="sequence" eval="1"/>
-      </record>
+		    <record id="module_category_$1" model="ir.module.category">
+				<field name="name">$2</field>
+				<field name="sequence">$3</field>
+		    </record>
 		"""
 
-	'Create Group, then assign new permissions':
-		'prefix': 'odoo_security_group'
+	'Create group, then assign new permissions':
+		'prefix': 'oo_security_group'
 		'body': """
-			<record id="" model="res.groups">
-				<field name="name"></field>
-				<field name="category_id" ref=""/>
+			<record id="group_$1" model="res.groups">
+				<field name="name">$2</field>
+				<field name="category_id" ref="$3"/>
 				<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
 			</record>
 		"""
 
-	'Create Security Rules':
-		'prefix': 'odoo_security_rule'
+	'Create security rules':
+		'prefix': 'oo_security_rule'
 		'body': """
-			<record id="" model="ir.rule">
-				<field name="name"></field>
-				<field ref="model_name_of_model" name="model_id"/>
-				<field name="domain_force">[('', '', )]</field>
+			<record id="rule_$1" model="ir.rule">
+				<field name="name">$2</field>
+				<field name="model_id" ref="model_$3"/>
+				<field name="domain_force">[(\'$4\', \'=\', $5), ]</field>
 				<field name="perm_write" eval="1"/>
 				<field name="perm_create" eval="1"/>
 				<field name="perm_read" eval="1"/>
 				<field name="perm_unlink" eval="1"/>
-				<!-- You can attach this rule to a specific group, Or make it Global -->
+				<!-- You can attach this rule to a specific group, or make it global -->
 				<field name="groups" eval="[(4, ref('group_id'))]"/>
 				<!--<field name="global" eval="1"/> -->
 			</record>
 		"""
 
-	'Create Workflow':
-		'prefix': 'odoo_wkf'
+# Workflow
+
+	'Create workflow':
+		'prefix': 'oo_wkf'
 		'body': """
-			<record id="" model="workflow">
-				<field name="name"></field>
-				<field name="osv"></field>
+			<record id="wkf_$1" model="workflow">
+				<field name="name">$2</field>
+				<field name="osv">$3</field>
 				<field name="on_create">True</field>
 			</record>
 		"""
 
-	'Add Transition to Workflow':
-		'prefix': 'odoo_wkf_transition'
+	'Add transition to workflow':
+		'prefix': 'oo_wkf_transition'
 		'body': """
-			<record id="" model="workflow.transition">
-				<field name="act_from" ref=""/>
-				<field name="act_to" ref=""/>
-				<field name="signal"></field>
+			<record id="trans_$1" model="workflow.transition">
+				<field name="act_from" ref="$2"/>
+				<field name="act_to" ref="$3"/>
+				<field name="signal">$4</field>
 			</record>
 		"""
 
-	'Add Activity to Workflow':
-		'prefix': 'odoo_wkf_activity'
+	'Add activity to workflow':
+		'prefix': 'oo_wkf_activity'
 		'body': """
-			<record id="" model="workflow.activity">
-				<field name="wkf_id" ref=""/>
+			<record id="act_$1" model="workflow.activity">
+				<field name="wkf_id" ref="$2"/>
+				<field name="name">$3</field>
 				<!--<field name="flow_start">True</field>-->
 				<!--<field name="flow_stop">True</field>-->
-				<field name="name"></field>
 				<field name="kind">function</field>
-				<field name="action">METHOD_NAME()</field>
+				<field name="action">$4</field>
 			</record>
 		"""
 
+# Misc
+
 	'Add Social Messaging and followers':
-		'prefix': 'odoo_form_social'
+		'prefix': 'oo_form_social'
 		'body': """
 			<div class="oe_chatter">
 				<field name="message_follower_ids" widget="mail_followers"/>

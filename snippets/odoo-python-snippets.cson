@@ -1,73 +1,153 @@
 '.source.python':
+
+# Odoo objects
+
 	'Create New Odoo Object':
-		'prefix': 'odoo_object'
+		'prefix': 'oo_object'
 		'body': """
 			class NewModule(models.Model):
-				_name = 'new_module.new_module'
-				_rec_name = 'name'
-				_description = 'New Description'
+				_name = '$1'
+				_rec_name = '$2' # optional
+				_description = '$3'
+				_order = '$4' # optional
 
 				name = fields.Char()
 		"""
 
 	'Inherit/Extend Existing Odoo Object':
-		'prefix': 'odoo_object_inherit'
+		'prefix': 'oo_object_inherit'
 		'body': """
 			class NewModule(models.Model):
-				_name = 'new_module.new_module'
-				_inherit = 'new_module.new_module'
+				_name = '$1' # optional
+				_inherit = '$2'
 
 				name = fields.Char()
 		"""
 
-	'Add new field of type Integer':
-		'prefix': 'odoo_field_integer'
-		'body': 'new_field = fields.Integer(string="", required=False, )'
+# Odoo fields
 
-	'Add new field of type Char':
-		'prefix': 'odoo_field_char'
-		'body': 'new_field = fields.Char(string="", required=False, )'
+	'Integer Field':
+		'prefix': 'oo_field_integer'
+		'body': 'new_field = fields.Integer(string="$1", )'
 
-	'Add new field of type Text':
-		'prefix': 'odoo_field_text'
-		'body': 'new_field = fields.Text(string="", required=False, )'
+	'Float Field':
+		'prefix': 'oo_field_float'
+		'body': 'new_field = fields.Float(string="$1", )'
 
-	'Add new field of type Many2one':
-		'prefix': 'odoo_field_many2one'
-		'body': 'new_field_id = fields.Many2one(comodel_name="", string="", required=False, )'
+	'Char Field':
+		'prefix': 'oo_field_char'
+		'body': 'new_field = fields.Char(string="$1", )'
 
-	'Add new field of type One2many':
-		'prefix': 'odoo_field_one2many'
-		'body': 'new_field_ids = fields.One2many(comodel_name="", inverse_name="", string="", required=False, )'
+	'Text Field':
+		'prefix': 'oo_field_text'
+		'body': 'new_field = fields.Text(string="$1", )'
 
-	'Add new field of type Many2many':
-		'prefix': 'odoo_field_many2many'
-		'body': 'new_field_ids = fields.Many2many(comodel_name="", relation="", column1="", column2="", string="", )'
+	'Many2one Field':
+		'prefix': 'oo_field_many2one'
+		'body': 'new_field_id = fields.Many2one(comodel_name="$1", string="$2", )'
 
-	'Add new field of type Boolean':
-		'prefix': 'odoo_field_boolean'
-		'body': 'is_new_field = fields.Boolean(string="",  )'
+	'One2many Field':
+		'prefix': 'oo_field_one2many'
+		'body': 'new_field_ids = fields.One2many(comodel_name="$1", inverse_name="$2", string="$3", )'
 
-	'Add new field of type HTML':
-		'prefix': 'odoo_field_html'
-		'body': 'new_field = fields.HTML(string="",  )'
+	'Many2many Field':
+		'prefix': 'oo_field_many2many'
+		'body': 'new_field_ids = fields.Many2many(comodel_name="$1", relation="$2", column1="$3", column2="$4", string="$5", )'
 
-	'Add new field of type Float':
-		'prefix': 'odoo_field_float'
-		'body': 'new_field = fields.Float(string="",  required=False, )'
+	'Boolean Field':
+		'prefix': 'oo_field_boolean'
+		'body': 'is_new_field = fields.Boolean(string="$1", )'
 
-	'Add new field of type Date':
-		'prefix': 'odoo_field_date'
-		'body': 'new_field = fields.Date(string="", required=False, )'
+	'HTML Field':
+		'prefix': 'oo_field_html'
+		'body': 'new_field = fields.HTML(string="$1", )'
 
-	'Add new field of type DateTime':
-		'prefix': 'odoo_field_datetime'
-		'body': 'new_field = fields.Datetime(string="", required=False, )'
+	'Date Field':
+		'prefix': 'oo_field_date'
+		'body': 'new_field = fields.Date(string="$1", )'
 
-	'Add new field of type Selection':
-		'prefix': 'odoo_field_selection'
-		'body': 'state = fields.Selection(string="", selection=[('', ''), ('', ''), ], required=False, )'
+	'DateTime Field':
+		'prefix': 'oo_field_datetime'
+		'body': 'new_field = fields.Datetime(string="$1", )'
 
-	'Add new field of type Binary':
-		'prefix': 'odoo_field_binary'
-		'body': 'new_field = fields.Binary(string="",  )'
+	'Selection Field':
+		'prefix': 'oo_field_selection'
+		'body': 'state = fields.Selection(string="$1", selection=[(\'$2\', \'$3\'), (\'$4\', \'$5\'), ], )'
+
+	'Binary Field':
+		'prefix': 'oo_field_binary'
+		'body': 'new_field = fields.Binary(string="$1",  )'
+
+# Call to common Odoo methods
+
+	'Search':
+		'prefix': 'oo_search'
+		'body': 'self.search([(\'$1\', \'=\', $2), ...], offset=0, limit=None, order=None, count=False)'
+
+	'Name search':
+		'prefix': 'oo_search_name'
+		'body': 'self.name_search(name=\'$1\', args=None, operator=\'ilike\', limit=100)'
+
+# Creation of common Odoo methods
+
+	'Compute method':
+		'prefix': 'oo_method_compute'
+		'body': """
+@api.one
+@api.depends('$1', ...)
+def _compute_field(self):
+	self.field = $2
+		"""
+
+	'Onchange method':
+		'prefix': 'oo_onchange_method'
+		'body': """
+@api.onchange('$1', ...)
+def onchange_field(self):
+	vals = {}
+
+	# Remove warning if necessary
+	vals['warning'] = {
+		'title': _('$2')
+		'message': _('$3')
+	}
+
+	vals['value'] = {
+		'field1': $4,
+		'field2': $5,
+	}
+
+	return vals
+		"""
+
+	'Constrains method':
+		'prefix': 'oo_constrains_method'
+		'body': """
+@api.one
+@api.constrains('$1', ...)
+def _check_field(self):
+  if self.field == $2:
+  	raise ValidationError("$2")
+		"""
+
+# Complex Odoo fields
+
+	'Compute field':
+		'prefix': 'odoo_field_compute'
+		'body': """
+$1= fields.$2(string="", compute='_compute_$1', inverse='_inverse_$1', search='_search_$1')
+
+@api.one
+@api.depends('$3', ...)
+def _compute_$1(self):
+    self.$1 = ...
+
+@api.one
+def _inverse_$1(self):
+    self.$3 = ...
+
+def _search_$1(self, operator, value):
+    if operator == 'like':
+        operator = 'ilike'
+    return [('name', operator, value)]
+"""
