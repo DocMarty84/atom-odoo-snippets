@@ -66,9 +66,9 @@
 				<field name="model">$2</field>
 				<field name="inherit_id" ref="$3"/>
 				<field name="arch" type="xml">
-					<xpath expr="//field[@name='name']" position="$4">
+					<field name="$4" position="$5">
 						<!-- Add your fields or attributes here -->
-					</xpath>
+					</field>
 				</field>
 			</record>
 		"""
@@ -81,9 +81,9 @@
 				<field name="model">$2</field>
 				<field name="inherit_id" ref="$3"/>
 				<field name="arch" type="xml">
-					<xpath expr="//field[@name='name']" position="$4">
+					<field name="$4" position="$5">
 						<!-- Add new fields here -->
-					</xpath>
+					</field>
 				</field>
 			</record>
 		"""
@@ -96,9 +96,9 @@
 				<field name="model">$2</field>
 				<field name="inherit_id" ref="$3"/>
 				<field name="arch" type="xml">
-					<xpath expr="//field[@name='name']" position="$4">
+					<field name="$4" position="$5">
 						<!-- Add new fields or filters here -->
-					</xpath>
+					</field>
 				</field>
 			</record>
 		"""
