@@ -52,7 +52,7 @@
 				context={"${50:key}": ${51:"value"}\\},
 				ondelete="${60:set null}",
 				help="${70:Explain your field}.",
-			})$80
+			)$80
 			'''
 
 	'One2many Field':
@@ -65,7 +65,7 @@
 				domain="[('${50:field}', '${51:=}', ${52:other})]",
 				context={"${60:key}": ${61:"value"}\\},
 				help="${70:Explain your field}.",
-			})$80
+			)$80
 			'''
 
 	'Many2many Field':
@@ -80,7 +80,7 @@
 				domain="[('${70:field}', '${71:=}', ${72:other})]",
 				context={"${80:key}": ${81:"value"}\\},
 				help="${90:Explain your field}.",
-			})$100
+			)$100
 			'''
 
 	'Boolean Field':
