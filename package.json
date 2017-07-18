@@ -10,7 +10,7 @@
     "xml"
   ],
   "activationCommands": {},
-  "repository": "https://github.com/nicolasmartinelli/atom-odoo-snippets",
+  "repository": "https://github.com/DocMarty84/atom-odoo-snippets",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
