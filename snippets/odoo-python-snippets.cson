@@ -89,7 +89,7 @@
 
 	'HTML Field':
 		'prefix': 'oo_field_html'
-		'body': '${5:new_field} = fields.HTML(string="${10:Field name}", )'
+		'body': '${5:new_field} = fields.Html(string="${10:Field name}", )'
 
 	'Date Field':
 		'prefix': 'oo_field_date'
