@@ -1,3 +1,7 @@
+## 0.3.2
+
+* Fix HTML field (issue #6)
+
 ## 0.3.1
 
 * Minor fix
