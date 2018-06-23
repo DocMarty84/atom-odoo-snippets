@@ -3,7 +3,7 @@
 # Odoo objects
 
 	'Create New Odoo Object':
-		'prefix': 'oo_object'
+		'prefix': 'odoo_object'
 		'body': """
 			class ${10:NewModule}(models.Model):
 				_name = '${20:module.name}'
@@ -15,7 +15,7 @@
 		"""
 
 	'Inherit/Extend Existing Odoo Object':
-		'prefix': 'oo_object_inherit'
+		'prefix': 'odoo_object_inherit'
 		'body': """
 			class ${10:NewModule}(models.Model):
 				_name = '${20:module.name}' # optional
@@ -27,23 +27,23 @@
 # Odoo fields
 
 	'Integer Field':
-		'prefix': 'oo_field_integer'
+		'prefix': 'odoo_field_integer'
 		'body': '${5:new_field} = fields.Integer(string="${10:Field name}", )'
 
 	'Float Field':
-		'prefix': 'oo_field_float'
+		'prefix': 'odoo_field_float'
 		'body': '${5:new_field} = fields.Float(string="${10:Field name}", )'
 
 	'Char Field':
-		'prefix': 'oo_field_char'
+		'prefix': 'odoo_field_char'
 		'body': '${5:new_field} = fields.Char(string="${10:Field name}", )'
 
 	'Text Field':
-		'prefix': 'oo_field_text'
+		'prefix': 'odoo_field_text'
 		'body': '${5:new_field} = fields.Text(string="${10:Field name}", )'
 
 	'Many2one Field':
-		'prefix': 'oo_field_many2one'
+		'prefix': 'odoo_field_many2one'
 		'body': '''
 			${10:new_field_id} = fields.Many2one(
 				string="${20:Field name}",
@@ -56,7 +56,7 @@
 			'''
 
 	'One2many Field':
-		'prefix': 'oo_field_one2many'
+		'prefix': 'odoo_field_one2many'
 		'body': '''
 			${10:new_field_ids} = fields.One2many(
 				string="${20:Field name}",
@@ -69,7 +69,7 @@
 			'''
 
 	'Many2many Field':
-		'prefix': 'oo_field_many2many'
+		'prefix': 'odoo_field_many2many'
 		'body': '''
 			${10:new_field_ids} = fields.Many2many(
 				string="${20:Field name}",
@@ -84,23 +84,23 @@
 			'''
 
 	'Boolean Field':
-		'prefix': 'oo_field_boolean'
+		'prefix': 'odoo_field_boolean'
 		'body': '${5:is_new_field} = fields.Boolean(string="${10:Field name}", )'
 
 	'HTML Field':
-		'prefix': 'oo_field_html'
+		'prefix': 'odoo_field_html'
 		'body': '${5:new_field} = fields.Html(string="${10:Field name}", )'
 
 	'Date Field':
-		'prefix': 'oo_field_date'
+		'prefix': 'odoo_field_date'
 		'body': '${5:new_field} = fields.Date(string="${10:Field name}", )'
 
 	'DateTime Field':
-		'prefix': 'oo_field_datetime'
+		'prefix': 'odoo_field_datetime'
 		'body': '${5:new_field} = fields.Datetime(string="${10:Field name}", )'
 
 	'Selection Field':
-		'prefix': 'oo_field_selection'
+		'prefix': 'odoo_field_selection'
 		'body': '''
 			${5:new_field} = fields.Selection(
 				string="${10:Field name}",
@@ -112,23 +112,23 @@
 			'''
 
 	'Binary Field':
-		'prefix': 'oo_field_binary'
+		'prefix': 'odoo_field_binary'
 		'body': '${5:new_field} = fields.Binary(string="${10:Field name}", )'
 
 # Call to common Odoo methods
 
 	'Search':
-		'prefix': 'oo_search'
+		'prefix': 'odoo_search'
 		'body': 'self.search([(\'$1\', \'=\', $2), ...], offset=0, limit=None, order=None, count=False)'
 
 	'Name search':
-		'prefix': 'oo_search_name'
+		'prefix': 'odoo_search_name'
 		'body': 'self.name_search(name=\'$1\', args=None, operator=\'ilike\', limit=100)'
 
 # Creation of common Odoo methods
 
 	'Compute method':
-		'prefix': 'oo_method_compute'
+		'prefix': 'odoo_method_compute'
 		'body': """
 			@api.multi
 			@api.depends("${10:field1}", "${20:field2}", )
@@ -138,7 +138,7 @@
 		"""
 
 	'Onchange method':
-		'prefix': 'oo_onchange_method'
+		'prefix': 'odoo_onchange_method'
 		'body': """
 			@api.onchange("${10:field1}", "${20:field2}", )
 			def _onchange_${30:field}(self):
@@ -159,7 +159,7 @@
 		"""
 
 	'Constrains method':
-		'prefix': 'oo_constrains_method'
+		'prefix': 'odoo_constrains_method'
 		'body': """
 			@api.multi
 			@api.constrains("${10:field1}", "${20:field2}", )
@@ -172,7 +172,7 @@
 # Complex Odoo fields
 
 	'Compute field':
-		'prefix': 'odoo_field_compute'
+		'prefix': 'ododoo_field_compute'
 		'body': """
 			${10:new_field} = fields.${20:Float}(
 				string="${30:Field string}",

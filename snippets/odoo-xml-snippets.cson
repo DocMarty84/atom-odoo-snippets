@@ -1,6 +1,6 @@
 '.text.xml':
 	'Create the main tags':
-		'prefix': 'oo_data'
+		'prefix': 'odoo_data'
 		'body': """
 		<?xml version="1.0" encoding="utf-8"?>
 		<odoo>
@@ -11,7 +11,7 @@
 # Form, tree and search view creation
 
 	'Create form view':
-		'prefix': 'oo_form'
+		'prefix': 'odoo_form'
 		'body': """
 			<record id="$1_view_form" model="ir.ui.view">
 				<field name="name">$2.form</field>
@@ -29,7 +29,7 @@
 		"""
 
 	'Create tree view':
-		'prefix': 'oo_tree'
+		'prefix': 'odoo_tree'
 		'body': """
 			<record id="$1_view_tree" model="ir.ui.view">
 				<field name="name">$2.tree</field>
@@ -43,7 +43,7 @@
 		"""
 
 	'Create search view':
-		'prefix': 'oo_search'
+		'prefix': 'odoo_search'
 		'body': """
 			<record id="$1_view_search" model="ir.ui.view">
 				<field name="name">$2.search</field>
@@ -58,7 +58,7 @@
 		"""
 
 	'Inherit existing form view':
-		'prefix': 'oo_form_inherit'
+		'prefix': 'odoo_form_inherit'
 		'body': """
 			<!-- Inherit Form view -->
 			<record id="$1" model="ir.ui.view">
@@ -74,7 +74,7 @@
 		"""
 
 	'Inherit existing tree view':
-		'prefix': 'oo_tree_inherit'
+		'prefix': 'odoo_tree_inherit'
 		'body': """
 			<record id="$1" model="ir.ui.view">
 				<field name="name">$2.tree</field>
@@ -89,7 +89,7 @@
 		"""
 
 	'Inherit existing search view':
-		'prefix': 'oo_search_inherit'
+		'prefix': 'odoo_search_inherit'
 		'body': """
 			<record id="$1" model="ir.ui.view">
 				<field name="name">$2.search</field>
@@ -104,7 +104,7 @@
 		"""
 
 	'Add Form\'s header with \'state\' and buttons':
-		'prefix': 'oo_form_header'
+		'prefix': 'odoo_form_header'
 		'body': """
 			<header>
 				<button name="$1" string="$2" class="oe_highlight" states="$3" type="$4"/>
@@ -115,7 +115,7 @@
 # Action
 
 	'Create new action':
-		'prefix': 'oo_action'
+		'prefix': 'odoo_action'
 		'body': """
 			<record id="$1_action_form" model="ir.actions.act_window">
 				<field name="name">$2</field>
@@ -135,21 +135,21 @@
 # Menuitem
 
 	'Create menu item in the upper bar':
-		'prefix': 'oo_menuitem_root'
+		'prefix': 'odoo_menuitem_root'
 		'body': '<menuitem id="menu_$1" name="$2" sequence="$3"/>'
 
 	'Create menu item for category':
-		'prefix': 'oo_menuitem_category'
+		'prefix': 'odoo_menuitem_category'
 		'body': '<menuitem id="menu_$1" name="$2" parent="$3" sequence="$4"/>'
 
 	'Create menu item for actions':
-		'prefix': 'oo_menuitem_action'
+		'prefix': 'odoo_menuitem_action'
 		'body': '<menuitem id="menu_$1" name="$2" parent="$3" action="$4" sequence="$5"/>'
 
 # Common structures
 
 	'Add nested groups':
-		'prefix': 'oo_nested_group'
+		'prefix': 'odoo_nested_group'
 		'body': """
 			<group string="$1">
 				<group>
@@ -162,7 +162,7 @@
 		"""
 
 	'Add notebook and a page':
-		'prefix': 'oo_notebook'
+		'prefix': 'odoo_notebook'
 		'body': """
 			<notebook>
 				<page string="$1">
@@ -174,7 +174,7 @@
 		"""
 
 	'Add page':
-		'prefix': 'oo_page'
+		'prefix': 'odoo_page'
 		'body': """
 			<page string="$1">
 				<group>
@@ -184,13 +184,13 @@
 		"""
 
 	'Add domain to a field':
-		'prefix': 'oo_domain'
+		'prefix': 'odoo_domain'
 		'body': 'domain="[(\'$1\', \'=\', $2), ]"'
 
 # Security
 
 	'Create security category':
-		'prefix': 'oo_security_category'
+		'prefix': 'odoo_security_category'
 		'body': """
 		    <record id="module_category_$1" model="ir.module.category">
 				<field name="name">$2</field>
@@ -199,7 +199,7 @@
 		"""
 
 	'Create group, then assign new permissions':
-		'prefix': 'oo_security_group'
+		'prefix': 'odoo_security_group'
 		'body': """
 			<record id="group_$1" model="res.groups">
 				<field name="name">$2</field>
@@ -209,7 +209,7 @@
 		"""
 
 	'Create security rules':
-		'prefix': 'oo_security_rule'
+		'prefix': 'odoo_security_rule'
 		'body': """
 			<record id="rule_$1" model="ir.rule">
 				<field name="name">$2</field>
@@ -228,7 +228,7 @@
 # Workflow
 
 	'Create workflow':
-		'prefix': 'oo_wkf'
+		'prefix': 'odoo_wkf'
 		'body': """
 			<record id="wkf_$1" model="workflow">
 				<field name="name">$2</field>
@@ -238,7 +238,7 @@
 		"""
 
 	'Add transition to workflow':
-		'prefix': 'oo_wkf_transition'
+		'prefix': 'odoo_wkf_transition'
 		'body': """
 			<record id="trans_$1" model="workflow.transition">
 				<field name="act_from" ref="$2"/>
@@ -248,7 +248,7 @@
 		"""
 
 	'Add activity to workflow':
-		'prefix': 'oo_wkf_activity'
+		'prefix': 'odoo_wkf_activity'
 		'body': """
 			<record id="act_$1" model="workflow.activity">
 				<field name="wkf_id" ref="$2"/>
@@ -263,7 +263,7 @@
 # Misc
 
 	'Add Social Messaging and followers':
-		'prefix': 'oo_form_social'
+		'prefix': 'odoo_form_social'
 		'body': """
 			<div class="oe_chatter">
 				<field name="message_follower_ids" widget="mail_followers"/>

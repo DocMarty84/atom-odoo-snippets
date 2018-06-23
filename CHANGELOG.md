@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Change prefix to `odoo_`
+
 ## 0.3.2
 
 * Fix HTML field (issue #6)

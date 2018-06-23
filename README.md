@@ -1,7 +1,7 @@
 # atom-odoo-snippets
 
 Add snippets for the Odoo software development to the Atom editor. Snippets are
-provided for Python and XML sources. All snippets start with prefix 'oo_'.
+provided for Python and XML sources. All snippets start with prefix 'odoo_'.
 
 Python snippets:
 - Create new Odoo object
